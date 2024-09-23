@@ -1,0 +1,23 @@
+{% extends 'root.html' %}
+
+{% block body %}
+<body class="grid-c">
+    <header>
+        <nav class="grid-r">
+            <a href="{{ url_for('index') }}">Главная</a>
+            <a href="{{ url_for('images') }}">Изображения</a>
+            <a href="{{ url_for('videos') }}">Видео</a>
+            <a href="{{ url_for('works') }}">Лабораторные работы</a>
+            <a href="{{ url_for('review') }}">Отзыв</a>
+        </nav>
+    </header>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    <footer>
+        <nav class="grid-r">
+            <a href="https://github.com/melnik2003">GitHub</a>
+        </nav>
+    </footer>
+</body>
+{% endblock %}

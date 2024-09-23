@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">
+
+    <link
+        rel="icon"
+        href="{{ url_for('static', filename='favicon_io/favicon.ico') }}"
+        type="image/x-icon"
+    />
+
+    <link rel="manifest"  href="{{ url_for('static', filename='site.webmanifest') }}" />
+    <link rel="stylesheet" href="{{ url_for("static", filename="styles.css") }}" />
+    <title>My Website</title>
+    {% block in_head %}{% endblock %}
+</head>
+
+{% block body %}{% endblock %}
+<body class="grid-c">
+    {% block  %}
+    <header>
+        <nav class="grid-r">
+            <a href="{{ url_for('index') }}">Главная</a>
+            <a href="{{ url_for('images') }}">Изображения</a>
+            <a href="{{ url_for('videos') }}">Видео</a>
+            <a href="{{ url_for('works') }}">Лабораторные работы</a>
+            <a href="{{ url_for('review') }}">Отзыв</a>
+        </nav>
+    </header>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    <footer>
+        <nav class="grid-r">
+            <a href="https://github.com/melnik2003">GitHub</a>
+        </nav>
+    </footer>
+</body>
+
+</html>
