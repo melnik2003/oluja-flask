@@ -4,11 +4,14 @@
 <body class="grid-c">
     <main class="grid-r">
         <div id="info-block"></div>
-        <div id="auth-block"></div>
+        <div id="auth-block">
+            <button href="{{ url_for('login') }}"></button>
+            <button href="{{ url_for('register') }}"></button>
+        </div>
     </main>
     <footer>
         <nav class="grid-r">
-
+            
             <a href="https://github.com/melnik2003">GitHub</a>
         </nav>
     </footer>

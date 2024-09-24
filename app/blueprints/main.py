@@ -1,4 +1,6 @@
 from flask import render_template, send_from_directory
+from flask_login import login_required
+
 from . import main_bp
 
 
@@ -8,7 +10,11 @@ def robots():
 
 
 @main_bp.route('/')
-def index():
-    return render_template('main/index.html')
+@login_required
+def home():
+    return render_template('home.html')
 
 
+@main_bp.route('/welcome')
+def welcome():
+    return render_template('welcome.html')

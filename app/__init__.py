@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask
 import os
 
 from app.extensions import check_ip_whitelist, db, login_manager
@@ -8,7 +8,7 @@ from blueprints import blueprints
 def create_app():
     app = Flask(__name__)
 
-    match os.getenv('FLASK_ENV').lower:
+    match os.getenv('FLASK_ENV').lower():
         case 'development':
             app.config.from_object('config.DevelopmentConfig')
         case 'testing':
@@ -16,7 +16,6 @@ def create_app():
         case 'production':
             app.config.from_object('config.ProductionConfig')
         case _:
-            # Placeholder for error
             app.config.from_object('config.DevelopmentConfig')
 
     # Initialize extensions
