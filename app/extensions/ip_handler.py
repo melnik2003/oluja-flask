@@ -1,5 +1,3 @@
-# No validation for inputs, no logging
-
 from flask import request, abort
 import geoip2.database, geoip2.errors
 from typing import Any, Union, List, Tuple
