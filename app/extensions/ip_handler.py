@@ -3,7 +3,7 @@ import geoip2.database
 import geoip2.errors
 import threading
 import atexit
-from typing import Any, Union, List
+from typing import Union, List
 from functools import wraps
 
 

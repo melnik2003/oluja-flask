@@ -1,5 +1,7 @@
 from flask import current_app, Blueprint, render_template, send_from_directory
 
+from app import ip_handler
+
 main_bp = Blueprint('main', __name__)
 
 
@@ -10,5 +12,5 @@ def robots():
 
 @main_bp.route('/')
 def welcome():
-    current_app.ip_handler.check_ip()
+    ip_handler.check_ip()
     return render_template('welcome.html')

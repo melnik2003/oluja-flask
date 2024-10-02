@@ -1,7 +1,7 @@
 from flask import current_app, Blueprint, render_template, jsonify
 from flask_socketio import SocketIO, emit, join_room, leave_room
 
-from app import db, socketio
+from app import db, socketio, ip_handler
 from app.models import Message
 
 chat_bp = Blueprint('chat', __name__)
@@ -9,13 +9,13 @@ chat_bp = Blueprint('chat', __name__)
 
 @chat_bp.route('/tos')
 def tos():
-    current_app.ip_handler.check_ip()
+    ip_handler.check_ip()
     return render_template('tos.html')
 
 
 @chat_bp.route('/chat')
 def chat():
-    current_app.ip_handler.check_ip()
+    ip_handler.check_ip()
     return render_template('chat.html')
 
 
