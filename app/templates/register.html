@@ -1,0 +1,27 @@
+{% extends 'root.html' %}
+
+{% block body %}
+
+<body id="l-body" class="flex-c">
+    <main id="l-main" class="flex-r flex-filler">
+        <div id="l-login-block" class="flex-filler">
+            <div id="l-login-box" class="flex-c box-1">
+                <form method="POST" action="{{ url_for('auth.login') }}">
+                    {{ form.hidden_tag() }}
+                    {{ form.username.label }} {{ form.username() }} <br>
+                    {{ form.password.label }} {{ form.password() }} <br>
+                    {{ form.submit() }}
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <nav class="grid-r box-1">
+            <span class="obfs">ur.akpos@xam</span>
+            <a href="https://github.com/">GitHub</a>
+        </nav>
+    </footer>
+</body>
+
+{% endblock %}
+

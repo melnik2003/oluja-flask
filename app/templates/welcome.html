@@ -1,19 +1,47 @@
-{% extends 'root.html' %}
+{% extends 'base.html' %}
 
-{% block body %}
-<body class="grid-c">
-    <main class="grid-r">
-        <div id="info-block"></div>
-        <div id="auth-block">
-            <button href="{{ url_for('login') }}"></button>
-            <button href="{{ url_for('register') }}"></button>
+
+{% block in_master %}
+
+<header id="w-header" class="header row-panel pad-1"></section>
+    <h3>Мельников М.А.</h3>
+    <h3>СПбГУТ, гр. ИСТ-112</h3>
+</header>
+
+<main id="content" class="content flex-c flex-expand pad-1">
+    <section>
+        <h3>О сайте</h3>
+        <p>
+            Сайт является моим персональным проектом и находится на ранних этапах разработки. Сайт может работать без JavaScript и поддерживает разные разрешения экранов. В будущем будут добавлены другие страницы, бэкенд на фласке и всякие фичи.
+        </p>
+    </section>
+
+    <section>
+        <h3>Обо мне</h3>
+        <p>
+            Я, Мельников М.А., целеустремлённый студент, специализирующийся в области ИТ, с интересом к решению проблем и прочной базой в языках программирования, управлении базами данных и системном администрировании. Я использую свои технические навыки, академические достижения и практический опыт для эффективного решения задач в сфере ИТ.
+        </p>
+    </section>
+
+    <section id="w-content" class="flex-r">
+        <div id="w-skills" class="flex-c">
+            <h3>Мои технические навыки:</h3>
+            <ul>
+                <li>Языки программирования: Python, C++</li>
+                <li>Управление базами данных: PostgreSQL, SQLite</li>
+                <li>Веб-разработка: HTML, CSS, JavaScript, Flask</li>
+                <li>Операционные системы: Windows, GNU/Linux</li>
+                <li>Инструменты: Git</li>
+            </ul>
         </div>
-    </main>
-    <footer>
-        <nav class="grid-r">
-            
-            <a href="https://github.com/melnik2003">GitHub</a>
-        </nav>
-    </footer>
-</body>
+
+        <img src="static/images/photo.jpg" alt="Моя фотография" id="w-photo">
+    </section>
+</main>
+
+<footer class="footer row-panel pad-1">
+    <span class="obfs">ur.akpos@xam</span>
+    <a href="https://github.com/">GitHub</a>
+</footer>
+
 {% endblock %}

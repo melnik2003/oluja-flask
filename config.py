@@ -1,26 +1,23 @@
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'fallbacksecretkey')
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///default.db'
     GEOIP_DB = os.getenv('GEOIP_DB', 'app/static/GeoLite2-Country.mmdb')
-    ALLOWED_COUNTRIES = 'all'
 
 
 class DevelopmentConfig(Config):
-    DATABASE_URL = os.getenv('DEV_DATABASE_URL', 'sqlite:///dev.db')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DEV_DATABASE_URI', 'sqlite:///dev.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    ALLOWED_COUNTRIES = 'all'
 
 
 class TestingConfig(Config):
-    DATABASE_URL = os.getenv('TEST_DATABASE_URL', 'sqlite:///test.db')
+    SQLALCHEMY_DATABASE_URI = os.getenv('TEST_DATABASE_URI', 'sqlite:///test.db')
+    ALLOWED_COUNTRIES = 'all'
 
 
 class ProductionConfig(Config):
     ALLOWED_COUNTRIES = os.getenv('PROD_ALLOWED_COUNTRIES', 'RU').split(',')
-    DATABASE_URL = os.getenv('DATABASE_URL', 'sqlite:///prod.db')
+    SQLALCHEMY_DATABASE_URI = os.getenv('PROD_DATABASE_URI', 'sqlite:///prod.db')

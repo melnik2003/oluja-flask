@@ -1,20 +1,14 @@
-from flask import render_template, send_from_directory
-from flask_login import login_required
+from flask import current_app, Blueprint, render_template, send_from_directory
 
-from . import main_bp
+main_bp = Blueprint('main', __name__)
 
 
-@main_bp.route("/robots.txt")
+@main_bp.route('/robots.txt')
 def robots():
     return send_from_directory('static', 'robots.txt')
 
 
 @main_bp.route('/')
-@login_required
-def home():
-    return render_template('home.html')
-
-
-@main_bp.route('/welcome')
 def welcome():
+    current_app.ip_handler.check_ip()
     return render_template('welcome.html')

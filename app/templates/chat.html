@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block in_head %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% endblock %}
+
+
+{% block header %}
+
+<header id="chat-header" class="flex-c pad-0">
+    <h2>Анонимный чат</h2>
+</header>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div id="chat-box"></div>
+
+<form id="message-form">
+    <input id="username" type="text" placeholder="Username" required>
+    <input id="message" type="text" placeholder="Enter message..." required>
+    <button type="submit">Отправить</button>
+</form>
+
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+    $(document).ready(function () {
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // Function to fetch messages on page load
+        function fetchMessages() {
+            $.getJSON('/get_messages', function(data) {
+                data.forEach(function(message) {
+                    var timestamp = new Date(message.timestamp).toLocaleString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false
+                    });  
+                    $('#chat-box').append('<p>' + '[' + timestamp + '] <strong>' + message.username + ':</strong> ' + message.content + '</p>');
+                });
+            });
+        }
+
+        // Fetch messages when the page loads
+        fetchMessages();
+
+        // Form submission event
+        $('#message-form').submit(function(e) {
+            e.preventDefault();
+            let username = $('#username').val();
+            let message = $('#message').val();
+
+            // Emit message to server
+            socket.emit('send_message', {'username': username, 'message': message});
+            $('#message').val('');  // Clear message input
+        });
+
+        // Listen for incoming messages
+        socket.on('receive_message', function(data) {
+            var timestamp = new Date(data.timestamp).toLocaleString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+            $('#chat-box').append('<p>' + '[' + timestamp + '] <strong>' + message.username + ':</strong> ' + message.content + '</p>');
+        });
+    });
+</script>
+
+{% endblock %}
